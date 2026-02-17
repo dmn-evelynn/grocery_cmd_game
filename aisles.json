@@ -1,0 +1,160 @@
+{
+    "aisles": [
+        {
+            "aisle_number": "1",
+            "aisle_name": "Meat",
+            "items": [
+                {
+                    "id": "101",
+                    "name": "ground beef",
+                    "price": 6.75,
+                    "weight": 3.0
+                },
+                {
+                    "id": "102",
+                    "name": "chicken",
+                    "price": 5.5,
+                    "weight": 2.75
+                },
+                {
+                    "id": "103",
+                    "name": "bacon",
+                    "price": 2.35,
+                    "weight": 1.05
+                },
+                {
+                    "id": "104",
+                    "name": "turkey",
+                    "price": 8.0,
+                    "weight": 7.5
+                }
+            ]
+        },
+        {
+            "aisle_number": "2",
+            "aisle_name": "Dairy",
+            "items": [
+                {
+                    "id": "201",
+                    "name": "milk",
+                    "price": 2.15,
+                    "weight": 2.85
+                },
+                {
+                    "id": "202",
+                    "name": "egg (x6)",
+                    "price": 2.65,
+                    "weight": 0.95
+                },
+                {
+                    "id": "203",
+                    "name": "egg (x12)",
+                    "price": 4.15,
+                    "weight": 2.0
+                },
+                {
+                    "id": "204",
+                    "name": "cheese",
+                    "price": 1.05,
+                    "weight": 1.0
+                },
+                {
+                    "id": "205",
+                    "name": "butter",
+                    "price": 0.85,
+                    "weight": 0.5
+                }
+            ]
+        },
+        {
+            "aisle_number": "3",
+            "aisle_name": "Fauna",
+            "items": [
+                {
+                    "id": "301",
+                    "name": "apple",
+                    "price": 2.2,
+                    "weight": 1.15
+                },
+                {
+                    "id": "302",
+                    "name": "banana",
+                    "price": 0.95,
+                    "weight": 1.1
+                },
+                {
+                    "id": "303",
+                    "name": "orange",
+                    "price": 1.75,
+                    "weight": 1.15
+                },
+                {
+                    "id": "304",
+                    "name": "lettuce",
+                    "price": 1.5,
+                    "weight": 1.45
+                }
+            ]
+        },
+        {
+            "aisle_number": "4",
+            "aisle_name": "Baking",
+            "items": [
+                {
+                    "id": "401",
+                    "name": "baking soda",
+                    "price": 3.15,
+                    "weight": 0.45
+                },
+                {
+                    "id": "402",
+                    "name": "salt",
+                    "price": 1.05,
+                    "weight": 0.65
+                },
+                {
+                    "id": "403",
+                    "name": "cooking oil",
+                    "price": 0.85,
+                    "weight": 1.05
+                },
+                {
+                    "id": "404",
+                    "name": "mixing bowl set",
+                    "price": 5.75,
+                    "weight": 3.75
+                }
+            ]
+        },
+        {
+            "aisle_number": "5",
+            "aisle_name": "Cleaning Products",
+            "items": [
+                {
+                    "id": "501",
+                    "name": "paper towel",
+                    "price": 3.6,
+                    "weight": 0.85
+                },
+                {
+                    "id": "502",
+                    "name": "bleach",
+                    "price": 4.0,
+                    "weight": 1.65
+                },
+                {
+                    "id": "503",
+                    "name": "brush",
+                    "price": 2.5,
+                    "weight": 1.25
+                },
+                {
+                    "id": "504",
+                    "name": "air refreshener",
+                    "price": 3.15,
+                    "weight": 1.3
+                }
+            ]
+        }
+    ]
+}
