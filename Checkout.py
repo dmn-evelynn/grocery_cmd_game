@@ -1,0 +1,8 @@
+# This file's purpose is to handle the checkout portion of the game; Having light convo between user and employee; employee gives different responses per answer
+
+def checkout(user_info):
+    if user_info.kart == []:
+        print(
+            f"\n...Oops, apologies {user_info.first_name}...You need to add some items to your kart!...")
+    else:
+        print("Checking out...")

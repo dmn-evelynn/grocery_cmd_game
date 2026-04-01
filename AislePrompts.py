@@ -1,0 +1,68 @@
+# This file's purpose is to promt the user for their aisle selection
+
+import JSONFileMethods, Checkout, DisplayAisle
+
+# This method allows the user to chose an aisle, learn more about each aisle, or
+# return to the main menu.
+def enter_aisles(user_info):
+    create_file = True
+    if (create_file):
+        JSONFileMethods.create_aisle_file()
+        create_file = False
+        
+    
+        
+    print("""\nWhich aisle will you go to? Choose from the following:
+
+        [1] Meat
+        [2] Dairy
+        [3] Fauna
+        [4] Baking Needs
+        [5] Cleaning Supplies
+        [6] Checkout
+        [7] Back to Main Menu\n""")
+    user_input = input("Your selection >>> ")
+
+    while (True):
+        break_out_while = False
+        if not (user_input == "1" or user_input == "2" or user_input == "3" or user_input == "4" or user_input == "5" or user_input == "6" or user_input == "7"):
+            print("""\nAck!...That is not a valid input....Enter 1, 2, 3, 4, 5, 6, or 7:
+
+        [1] Meat
+        [2] Dairy
+        [3] Fauna
+        [4] Baking Needs
+        [5] Cleaning Supplies
+        [6] Checkout
+        [7] Back to Main Menu\n""")
+            user_input = input("Your selection >>> ")
+            
+        else:
+            
+            match user_input:
+                case "1" | "2" | "3" | "4" | "5":
+                    #run thru methods
+                    aisles = JSONFileMethods.read_aisle_file()
+                    DisplayAisle.item_view_menu(aisles, user_input,user_info)
+                    #return to previous menu
+                    break
+                case "6":
+                    Checkout.checkout(user_info)
+                    break_out_while = True
+                    break
+                case "7":
+                    break_out_while = True
+                    break
+                
+            if(break_out_while):
+                break
+            
+        
+    # Aisle Layout ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Aisle 1 -     Meat (ground beef, chicken, bacon, turkey)
+    # Aisle 2 -    Dairy (milk, eggs, cheese, butter)
+    # Aisle 3 -    Fauna (lettuce, apples, oranges, bananas)
+    # Aisle 4 -   Baking (baking soda, salt, oil, bowls)
+    # Aisle 5 - Cleaning (paper towel, bleach, brush, air refreshener)
+    # Checkout
+    # Quit
