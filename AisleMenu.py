@@ -43,8 +43,8 @@ def enter_aisles(user_info):
                 case "1" | "2" | "3" | "4" | "5":
                     #run thru methods
                     aisles = JSONFileMethods.read_aisle_file()
-                    DisplayAisle.item_view_menu(aisles, user_input, user_info)
-                    ItemSelectionMenu.select_item(aisles, user_input, user_info)
+                    selected_aisle = DisplayAisle.item_view_menu(aisles, user_input, user_info)
+                    ItemSelectionMenu.select_item(selected_aisle, user_input, user_info)
                     #return to previous menu
                     break
                 case "6":

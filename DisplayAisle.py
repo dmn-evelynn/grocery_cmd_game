@@ -1,6 +1,7 @@
 # This file's purpose is to display the selected aisle's information
 
-def item_view_menu(aisles, user_input,user_info):
+def item_view_menu(aisles, user_input, user_info):
+    selected_aisle = ""
     for aisle in aisles['aisles']:
         if(user_input == aisle['aisle_number']):
             #print(f"Match\t{user_input}\t{aisle['aisle_name']}")
@@ -24,7 +25,11 @@ def item_view_menu(aisles, user_input,user_info):
                     highest_line_length = len(line)
 
             divider = '=' * (highest_line_length - 2)
-            print(f"\n+{divider}+")
+            print(f"\n\t-~= {aisle['aisle_name']} =~-")
+            print(f"+{divider}+")
             for item in items:
                 print(item)
             print(f"+{divider}+")
+
+            selected_aisle = aisle
+    return selected_aisle

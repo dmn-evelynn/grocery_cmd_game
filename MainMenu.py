@@ -1,7 +1,7 @@
 # This file's purpose is to act as the main menu screen; user can go to aisles, view their stats, or head to checkout
 
 import random
-import AislePrompts, DisplayStats, Checkout
+import AisleMenu, DisplayStats, Checkout
 
 # This method shows the main menu screen to the user
 def player_choose_from_menu(user_info):
@@ -40,7 +40,7 @@ def player_choose_from_menu(user_info):
             else:
                 break
         if user_input == "1":
-            AislePrompts.enter_aisles(user_info)
+            AisleMenu.enter_aisles(user_info)
             del user_input
         elif user_input == "2":
             DisplayStats.display_stats(user_info)

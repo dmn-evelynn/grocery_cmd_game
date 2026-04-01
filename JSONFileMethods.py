@@ -40,7 +40,7 @@ def create_aisle_file():
                 },
             {
                 "aisle_number": "4",
-                "aisle_name": "Baking",
+                "aisle_name": "Baking Needs",
                 "items":[
                     {"id": "401", "name": "baking soda", "price": 3.15, "weight": 0.45},
                     {"id": "402", "name": "salt", "price": 1.05, "weight": 0.65},
@@ -50,7 +50,7 @@ def create_aisle_file():
                 },
             {
                 "aisle_number": "5",
-                "aisle_name": "Cleaning Products",
+                "aisle_name": "Cleaning Supplies",
                 "items":[
                     {"id": "501", "name": "paper towel", "price": 3.60, "weight": .85},
                     {"id": "502", "name": "bleach", "price": 4.00, "weight": 1.65},
@@ -77,6 +77,6 @@ def read_aisle_file():
     except FileNotFoundError:
         print("Error: 'data.json' not found. Please ensure the file exists.")
     except json.JSONDecodeError:
-        print("Error: Invalid JSON format in 'data.json'.")
+        print("Error: Invalid JSON format in 'aisles.json'.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
