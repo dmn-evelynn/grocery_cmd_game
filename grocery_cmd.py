@@ -352,32 +352,43 @@ def item_view_menu(aisles, user_input,user_info):
             items = []
             highest_line_length = 0
             highest_item_length = 0
-            
+
             for item in aisle['items']:
-                if(highest_item_length < len(item['name'])):
+                if highest_item_length < len(item['name']):
                     highest_item_length = len(item['name'])
-            
+
             for item in aisle['items']:
                 spacing = ' ' * (highest_item_length - len(item['name']))
-                    
-                line = f"| item id | {item['id']} ||\t|| item name | {item['name']}{spacing} ||\t|| item price | {item['price']:.2f} ||\t|| item weight | {item['weight']:.2f} |"
+                
+                line = f"| item id | {item['id']} ||  || item name | {item['name']}{spacing} ||  || item price | {item['price']:.2f} ||  || item weight | {item['weight']:.2f} |"
                 
                 items.append(line)
                 
-                if(highest_line_length < len(line)):
+                if highest_line_length < len(line):
                     highest_line_length = len(line)
-            #=========
-            #Fix divder length and make two methods to get item name spacing and divider length
-            #=========
-            divider = '=' * (highest_line_length + 1)
+
+            divider = '=' * (highest_line_length - 2)
             print(f"+{divider}+")
             for item in items:
                 print(item)
-            
             print(f"+{divider}+")
 
 
+def calculate_line_length(line):
+    count = 0
+    for char in line:
+        if(char != '\t'):
+            count = count + 1
+        else:
+            count = count + 5
+            print("tab")
+
+    print(count)
+    return count - 2
+
+
 user_info = Customer()
+player_choose_from_menu(user_info)
 create_user(user_info)
 display_stats(user_info)
 player_choose_from_menu(user_info)
