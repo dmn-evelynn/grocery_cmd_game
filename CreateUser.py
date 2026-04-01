@@ -7,8 +7,8 @@ def create_user(user_info):
     # Prompts user to enter name and then calls the set_name constructor. Afterwards,
     # the generate_wallet & generate_kart_preference methods are called.
     print("....Welcome.....erm, you seem unfamiliar. Tell me a little about yourself!")
-    user_info.set_name(input("First Name >>> "), input("Last Name >>> "))
-    print(f"\nHi, {user_info.first_name} {user_info.last_name}! " +
+    user_info.set_name(input("Name >>> "))
+    print(f"\nHi, {user_info.name}! " +
           "Welcome on in....tell me a little bit more about yourself!")
 
     generate_wallet(user_info)

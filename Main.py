@@ -1,7 +1,6 @@
 # This file's purpose is to be Main file
 
 import CreateUser, DisplayStats, MainMenu
-# import math
 
 # This program attempts to give the user a grocery shopping experience
 # via text prompts and text responses.

@@ -1,6 +1,6 @@
 # This file's purpose is to promt the user for their aisle selection
 
-import JSONFileMethods, Checkout, DisplayAisle
+import JSONFileMethods, Checkout, DisplayAisle, ItemSelectionMenu
 
 # This method allows the user to chose an aisle, learn more about each aisle, or
 # return to the main menu.
@@ -43,7 +43,8 @@ def enter_aisles(user_info):
                 case "1" | "2" | "3" | "4" | "5":
                     #run thru methods
                     aisles = JSONFileMethods.read_aisle_file()
-                    DisplayAisle.item_view_menu(aisles, user_input,user_info)
+                    DisplayAisle.item_view_menu(aisles, user_input, user_info)
+                    ItemSelectionMenu.select_item(aisles, user_input, user_info)
                     #return to previous menu
                     break
                 case "6":

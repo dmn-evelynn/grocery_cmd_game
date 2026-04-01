@@ -26,16 +26,20 @@ def player_choose_from_menu(user_info):
         [3] Head to checkout
         [4] Quit\n""")
         user_input = input("Your selection >>> ")
-        if not (user_input == "1" or user_input == "2" or user_input == "3" or user_input == "4"):
-            print("""\nAck!...That is not a valid input....Enter 1, 2, 3, or 4:
 
-                    [1] Aisle selection
-                    [2] View your stats
-                    [3] Head to checkout
-                    [4] Quit\n""")
+        while(True):
+            if not (user_input == "1" or user_input == "2" or user_input == "3" or user_input == "4"):
+                print("""\nAck!...That is not a valid input....Enter 1, 2, 3, or 4:
 
-            user_input = input("Your selection >>> ")
-        elif user_input == "1":
+        [1] Aisle selection
+        [2] View your stats
+        [3] Head to checkout
+        [4] Quit\n""")
+
+                user_input = input("Your selection >>> ")
+            else:
+                break
+        if user_input == "1":
             AislePrompts.enter_aisles(user_info)
             del user_input
         elif user_input == "2":

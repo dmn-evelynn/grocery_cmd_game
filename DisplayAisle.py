@@ -24,7 +24,7 @@ def item_view_menu(aisles, user_input,user_info):
                     highest_line_length = len(line)
 
             divider = '=' * (highest_line_length - 2)
-            print(f"+{divider}+")
+            print(f"\n+{divider}+")
             for item in items:
                 print(item)
             print(f"+{divider}+")
