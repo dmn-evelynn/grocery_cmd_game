@@ -12,8 +12,7 @@ def display_stats(user_info):
         print("\nCustomer Stats:")
 
     print(breaker + "\n" +
-          f"First Name       | {user_info.first_name}\n" +
-          f"Last Name        | {user_info.last_name}\n" +
+          f"Name             | {user_info.name}\n" +
           f"Wallet           | {user_info.wallet:.2f}\n" +
           f"Weight Limit     | {user_info.weight_limit:.2f}\n" +
           f"Remaining Weight | {user_info.remaining_weight:.2f}\n" +

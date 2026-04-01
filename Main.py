@@ -28,8 +28,7 @@ import CreateUser, DisplayStats, MainMenu
 class Customer:
     # Data points initialized upon object creation
     def __init__(self):
-        self.first_name = ""
-        self.last_name = ""
+        self.name = ""
         self.wallet = 0.00
         self.kart_preference = -1
         self.weight_limit = -1
@@ -37,9 +36,8 @@ class Customer:
         self.kart = []
 
     # Sets user's name
-    def set_name(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
+    def set_name(self, name):
+        self.name = name
 
     # Adds funds to user's wallet
     def set_wallet_funds(self, wallet):

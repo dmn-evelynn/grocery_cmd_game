@@ -11,7 +11,7 @@ def player_choose_from_menu(user_info):
         random_dialog_choice = random.randint(1, 3)
         #print(random_dialog_choice)
         if (first_visit):
-            print(f"\nAlright, {user_info.first_name}, let's get the ball rolling...." +
+            print(f"\nAlright, {user_info.name}, let's get the ball rolling...." +
                   "Choose from one of the following options:\n")
             first_visit = False
         elif (random_dialog_choice < 2):
