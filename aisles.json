@@ -98,7 +98,7 @@
         },
         {
             "aisle_number": "4",
-            "aisle_name": "Baking",
+            "aisle_name": "Baking Needs",
             "items": [
                 {
                     "id": "401",
@@ -128,7 +128,7 @@
         },
         {
             "aisle_number": "5",
-            "aisle_name": "Cleaning Products",
+            "aisle_name": "Cleaning Supplies",
             "items": [
                 {
                     "id": "501",

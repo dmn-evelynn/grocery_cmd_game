@@ -29,7 +29,7 @@ def item_view_menu(aisles, user_input, user_info):
             print(f"+{divider}+")
             for item in items:
                 print(item)
-            print(f"+{divider}+")
+            print(f"+{divider}+\n")
 
             selected_aisle = aisle
     return selected_aisle
