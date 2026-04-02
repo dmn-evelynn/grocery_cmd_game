@@ -1,4 +1,4 @@
-# This file's purpose is to promt the user for their aisle selection
+# This file's purpose is to prompt the user for their aisle selection
 
 import JSONFileMethods, Checkout, DisplayAisle, ItemSelectionMenu
 

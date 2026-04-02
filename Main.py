@@ -61,6 +61,22 @@ class Customer:
 
         # Updates remaining weight value
         self.remaining_weight = self.weight_limit
+    
+    # Updates remaining weight variable
+    def set_remaining_weight(self, remaining_weight):
+        self.remaining_weight = remaining_weight
+
+    #======
+    # Continue here :3
+    #======
+    # Adds items to the player's kart
+    def add_item_to_kart(self, item, quantity):
+        print(f"Added {quantity}x {item} to kart")
+
+    # Removes items from the player's kart
+    def remove_item_from_kart(self, item, quantity):
+        print(f"Removed {quantity}x {item} from kart")
+
         
 
 user_info = Customer()

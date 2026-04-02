@@ -20,8 +20,8 @@ def player_choose_from_menu(user_info):
         else:
             print("\nPick one of the options below to continue:")
 
-        print("""
-        [1] Aisle selection
+        print(
+"""     \t[1] Aisle selection
         [2] View your stats
         [3] Head to checkout
         [4] Quit\n""")
