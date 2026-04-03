@@ -17,3 +17,5 @@ def display_stats(user_info):
           f"Weight Limit     | {user_info.weight_limit:.2f}\n" +
           f"Remaining Weight | {user_info.remaining_weight:.2f}\n" +
           breaker)
+
+    user_info.display_kart()

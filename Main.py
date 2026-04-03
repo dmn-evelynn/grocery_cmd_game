@@ -47,6 +47,7 @@ class Customer:
         self.kart_preference = kart_preference
         self.set_weight_limit()
 
+    # Sets the weight limits for each kart preference
     def set_weight_limit(self):
         basket = 30
         small_kart = 75
@@ -66,16 +67,29 @@ class Customer:
     def set_remaining_weight(self, remaining_weight):
         self.remaining_weight = remaining_weight
 
-    #======
-    # Continue here :3
-    #======
     # Adds items to the player's kart
     def add_item_to_kart(self, item, quantity):
-        print(f"Added {quantity}x {item} to kart")
+        print(f"Added {quantity}x {item['name']} to kart")
+        self.kart.append((item, quantity))
+
+    # Displays the player's current kart
+    def display_kart(self):
+        print(f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n==========================")
+        for item, quantity in self.kart:
+            print(f"{quantity:04d}x | {item['name']}")
 
     # Removes items from the player's kart
     def remove_item_from_kart(self, item, quantity):
         print(f"Removed {quantity}x {item} from kart")
+
+    # Returns the name for kart preference
+    def get_kart_name(self):
+        if self.kart_preference == "1":
+            return "basket"
+        elif self.kart_preference == "2":
+            return "small kart"
+        elif self.kart_preference == "3":
+            return "large kart"
 
         
 

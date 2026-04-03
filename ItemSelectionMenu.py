@@ -42,14 +42,15 @@ def select_item(aisle, aisle_number_input, user_info):
                                 user_info.remaining_weight, inputed_quantity, item['weight'])
 
                             if(calculated_weight[0]):
-                                print(f"\n\n{user_info.wallet}\n{user_info.remaining_weight}")
+                                # print(f"\n\n{user_info.wallet}\n{user_info.remaining_weight}")
 
                                 user_info.set_wallet_funds((user_info.wallet - calculated_funds[1]))
 
                                 difference = (user_info.remaining_weight - calculated_weight[1])
                                 user_info.set_remaining_weight(difference)
 
-                                print(f"\n\n{user_info.wallet}\n{user_info.remaining_weight}")
+                                # print(f"\n\n{user_info.wallet}\n{user_info.remaining_weight}")
+                                user_info.add_item_to_kart(item, inputed_quantity)
                                 break
                             else:
                                 print(f"\nYou do not have enough weight in your kart for " \

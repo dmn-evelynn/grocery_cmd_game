@@ -19,22 +19,26 @@ def enter_aisles(user_info):
         [3] Fauna
         [4] Baking Needs
         [5] Cleaning Supplies
-        [6] Checkout
-        [7] Back to Main Menu\n""")
+        [6] Display kart
+        [7] Checkout
+        [8] Back to Main Menu\n""")
     user_input = input("Your selection >>> ")
 
     while (True):
         break_out_while = False
-        if not (user_input == "1" or user_input == "2" or user_input == "3" or user_input == "4" or user_input == "5" or user_input == "6" or user_input == "7"):
-            print("""\nAck!...That is not a valid input....Enter 1, 2, 3, 4, 5, 6, or 7:
+        if not (user_input == "1" or user_input == "2" or user_input == "3" or \
+            user_input == "4" or user_input == "5" or user_input == "6" or \
+            user_input == "7" or user_input == "8"):
+            print("""\nAck!...That is not a valid input....Enter 1, 2, 3, 4, 5, 6, 7, or 8:
 
         [1] Meat
         [2] Dairy
         [3] Fauna
         [4] Baking Needs
         [5] Cleaning Supplies
-        [6] Checkout
-        [7] Back to Main Menu\n""")
+        [6] Display kart
+        [7] Checkout
+        [8] Back to Main Menu\n""")
             user_input = input("Your selection >>> ")
             
         else:
@@ -48,10 +52,13 @@ def enter_aisles(user_info):
                     #return to previous menu
                     break
                 case "6":
+                    user_info.display_kart()
+                    break
+                case "7":
                     Checkout.checkout(user_info)
                     break_out_while = True
                     break
-                case "7":
+                case "8":
                     break_out_while = True
                     break
                 
