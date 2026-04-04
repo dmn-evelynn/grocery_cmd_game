@@ -70,11 +70,33 @@ class Customer:
     # Adds items to the player's kart
     def add_item_to_kart(self, item, quantity):
         print(f"Added {quantity}x {item['name']} to kart")
-        self.kart.append((item, quantity))
+        
+        # Method that searches kart list for same item entry; then adds quantity
+        matched_items = False
+        count = 0
+        for item_entry in self.kart:
+            # print(item_entry)
+            if(item['name'] == item_entry[0]['name']):
+                # print(self.kart[count])
+                sum = self.kart[count][1] + quantity
+                # print(f"\n{self.kart[count][1]}\n\n{sum}")
+                self.kart[count] = (item, sum)
+                # print(item_entry, (self.kart[count][1] + quantity))
+                matched_items = True
+                break
+
+        if not matched_items:
+            self.kart.append((item, quantity))
+        
+
+
+
+
 
     # Displays the player's current kart
     def display_kart(self):
         print(f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n==========================")
+        # print(self.kart)
         for item, quantity in self.kart:
             print(f"{quantity:04d}x | {item['name']}")
 
