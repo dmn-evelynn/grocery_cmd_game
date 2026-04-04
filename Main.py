@@ -1,6 +1,6 @@
 # This file's purpose is to be Main file
 
-import CreateUser, DisplayStats, MainMenu
+import CreateUser, DisplayStats, MainMenu, AddRemoveItems
 
 # This program attempts to give the user a grocery shopping experience
 # via text prompts and text responses.
@@ -69,40 +69,25 @@ class Customer:
 
     # Adds items to the player's kart
     def add_item_to_kart(self, item, quantity):
+        AddRemoveItems.add_item(self, item, quantity)
         print(f"Added {quantity}x {item['name']} to kart")
         
-        # Method that searches kart list for same item entry; then adds quantity
-        matched_items = False
-        count = 0
-        for item_entry in self.kart:
-            # print(item_entry)
-            if(item['name'] == item_entry[0]['name']):
-                # print(self.kart[count])
-                sum = self.kart[count][1] + quantity
-                # print(f"\n{self.kart[count][1]}\n\n{sum}")
-                self.kart[count] = (item, sum)
-                # print(item_entry, (self.kart[count][1] + quantity))
-                matched_items = True
-                break
-
-        if not matched_items:
-            self.kart.append((item, quantity))
-        
-
-
-
-
 
     # Displays the player's current kart
-    def display_kart(self):
-        print(f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n==========================")
-        # print(self.kart)
-        for item, quantity in self.kart:
-            print(f"{quantity:04d}x | {item['name']}")
+    def display_kart(self, id_value: str = None):
+        header = f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n=========================="
+        if id_value == "id's":
+            print(header)
 
-    # Removes items from the player's kart
-    def remove_item_from_kart(self, item, quantity):
-        print(f"Removed {quantity}x {item} from kart")
+            for item, quantity in self.kart:
+                print(f"id: {item['id']} | {quantity:04d}x | {item['name']}")
+
+        else:
+            print(header)
+            # print(self.kart)
+            for item, quantity in self.kart:
+                print(f"{quantity:04d}x | {item['name']}")
+
 
     # Returns the name for kart preference
     def get_kart_name(self):
@@ -112,7 +97,10 @@ class Customer:
             return "small kart"
         elif self.kart_preference == "3":
             return "large kart"
-
+    
+    # Removes selected item & quantity from player's kart
+    def remove_item_from_kart(self, item, quantity):
+        AddRemoveItems.remove_item(self, item, quantity)
         
 
 user_info = Customer()

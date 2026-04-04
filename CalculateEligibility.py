@@ -1,5 +1,6 @@
 # This file handles calculating if the user has enough funds and an appropriate
 # amount of weight for their selected item(s).
+import AddRemoveItems
 
 # This method takes in the user's wallet funds, the quantity,
 # & the selected item's price. The user's wallet funds is compared to the quantity
@@ -27,3 +28,25 @@ def calculate_valid_weight(remaining_weight, quantity, item_weight):
     else:
         # print(f"{remaining_weight} vs {round((quantity * item_weight), 2)}")
         return False, round((quantity * item_weight), 2)
+
+
+# This method takes in the quantity of items in the player's kart and the
+# inputted quantity; a comparison is made to verify that the difference
+# won't be a negative number
+def determine_quantity_subtraction_eligibility(kart_quantity, inputted_quantity):
+    if((int(kart_quantity) - int(inputted_quantity) > 0)):
+        return True
+    else:
+        return False
+
+
+# This method takes in user_info and checks if the player's kart has any items
+# in it; if true then the player is prompted to input the item's id # and then
+# quantity. Both values are error checked with same logic as adding an item to
+# kart; if false then the user is informed to add items to kart first.
+def remove_item_from_kart(user_info):
+    if not user_info.kart:
+        print(f"\nCannot do that... Please add some items to your {user_info.get_kart_name()} and then try again!")
+    else:
+        user_info.display_kart("id's")
+        AddRemoveItems.get_item_plus_quantity()
