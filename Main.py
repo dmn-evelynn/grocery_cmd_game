@@ -12,13 +12,13 @@ import CreateUser, DisplayStats, MainMenu, AddRemoveItems
 # [4] Method that handles asking customer what aisle they want to go to
 # [5] Method that handles giving a description from user entry
 # [6] Method that handles choosing an item
-# [7] Method that handles viewnig customer's kart
+# [7] Method that handles viewing customer's kart
 # [8] Method that handles viewing customer's info/wallet
 # [9] Method that handles removing an item
 # [10] Method that handles [THREE DIFFERENT SHOPPING KARTS WITH DIFFERENT weight_limit
 # CAPACITIES]
 # [11] Method that handles checking out
-# [12] Method that handles employee having a light convo with you
+# [12] Method that handles employee having a light conversation with you
 # [13] Method that handles some of the user's stats
 
 
