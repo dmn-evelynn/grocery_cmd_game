@@ -38,7 +38,7 @@ def generate_wallet(user_info):
 def generate_kart_preference(user_info):
     print("""\nPerfect...now which size kart is your preference? Chose one of the numbers below:
 
-              [1] Handbasket (Can hold  30lbs)
+              [1] Hand basket (Can hold  30lbs)
               [2] Small-kart (Can hold  75lbs)
               [3] Large-kart (Can hold 125lbs)
 
@@ -50,7 +50,7 @@ def generate_kart_preference(user_info):
         if not (user_input == "1" or user_input == "2" or user_input == "3"):
             print("""\nAck!...That is not a valid input....Enter 1, 2, or 3:
 
-              [1] Handbasket (Can hold  30lbs)
+              [1] Hand basket (Can hold  30lbs)
               [2] Small-kart (Can hold  75lbs)
               [3] Large-kart (Can hold 125lbs)
 

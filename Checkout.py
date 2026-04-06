@@ -1,4 +1,6 @@
-# This file's purpose is to handle the checkout portion of the game; Having light convo between user and employee; employee gives different responses per answer
+# This file's purpose is to handle the checkout portion of the game;
+# Having light conversation between user and employee; employee
+# gives different responses per answer
 
 def checkout(user_info):
     if user_info.kart == []:

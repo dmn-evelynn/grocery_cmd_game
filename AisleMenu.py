@@ -48,8 +48,9 @@ def enter_aisles(user_info):
                     #run thru methods
                     aisles = JSONFileMethods.read_aisle_file()
                     selected_aisle = DisplayAisle.item_view_menu(aisles, user_input, user_info)
-                    is_item_selected, quantity = ItemSelectionMenu.select_item(selected_aisle['items'], user_info)
-                    if is_item_selected:
+                    is_item_selected = ItemSelectionMenu.select_item(selected_aisle['items'], user_info, "add")
+
+                    if is_item_selected:                 
                         break_out_while = True
                     #return to previous menu
                     break
@@ -73,6 +74,6 @@ def enter_aisles(user_info):
     # Aisle 2 -    Dairy (milk, eggs, cheese, butter)
     # Aisle 3 -    Fauna (lettuce, apples, oranges, bananas)
     # Aisle 4 -   Baking (baking soda, salt, oil, bowls)
-    # Aisle 5 - Cleaning (paper towel, bleach, brush, air refreshener)
+    # Aisle 5 - Cleaning (paper towel, bleach, brush, air refresher)
     # Checkout
     # Quit

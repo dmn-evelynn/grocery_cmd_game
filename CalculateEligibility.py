@@ -1,11 +1,11 @@
 # This file handles calculating if the user has enough funds and an appropriate
 # amount of weight for their selected item(s).
-import AddRemoveItems
+import AddRemoveItems, ItemSelectionMenu
 
 # This method takes in the user's wallet funds, the quantity,
 # & the selected item's price. The user's wallet funds is compared to the quantity
 # of selected items time the price; this comparison is sent back as a True or False
-# to be used in deciding to move on or send user back to item selction screen.
+# to be used in deciding to move on or send user back to item selection screen.
 def calculate_valid_funds(funds, quantity, price):
     if funds > round((quantity * price), 2):
         # print(f"{funds} vs {round((quantity * price), 2)}")
@@ -49,4 +49,4 @@ def remove_item_from_kart(user_info):
         print(f"\nCannot do that... Please add some items to your {user_info.get_kart_name()} and then try again!")
     else:
         user_info.display_kart("id's")
-        AddRemoveItems.get_item_plus_quantity()
+        is_item_selected = ItemSelectionMenu.select_item(user_info.kart, user_info, "add")

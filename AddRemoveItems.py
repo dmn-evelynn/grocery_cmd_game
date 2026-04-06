@@ -1,5 +1,5 @@
 # This file manages methods for adding and removing items from the player's kart.
-import CalculateEligibility
+import CalculateEligibility, ItemSelectionMenu
 
 # This method checks the player's kart for alike items and then adds new quantity
 # to existing quantity; if alike items are not found then a new entry it made.
@@ -51,13 +51,3 @@ def remove_item(self, item, quantity):
         print(f"\nSorry {self.name}, we could not find {item['name']} in your {self.get_kart_name}")
     else:
         print(f"Removed {quantity}x {item['name']} from kart")
-
-
-# This method requests the desired item id & quantity from the user.
-# Both values are error checked before returning a True or False
-# depending on if the values are valid or not.
-def get_item_plus_quantity():
-    #
-    # Continue here :3
-    #
-    print("Continue here")
