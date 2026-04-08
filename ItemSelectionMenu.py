@@ -5,15 +5,16 @@ import CalculateEligibility
 # are error checked and if succeed then the appropriate amount of items is
 # sent back along with a True or False to signify a pass or fail. 
 def select_item(container, user_info, mode):
-    print("\nThis is the item selection screen. Choose an item id then the " +
-    "quantity. To go back to the main menu, enter 'q'.")
     while(True):
+        print("\nThis is the item selection screen. Choose an item id then the " +
+        "quantity. To go back to the main menu, enter 'q'.")
 
         is_quitting = False
         item_id_input = input("\nDesired item id >>> ")
 
         if(item_id_input == "q"):
-            return False, -1
+            is_quitting = True
+            return False, -1, None
 
         matched_item_id = False
         item = ""
@@ -31,8 +32,8 @@ def select_item(container, user_info, mode):
             print(f"\nSorry, {item_id_input} does not match any of the item ids in the aisle. " \
                 "Please try again!")
         
-        if(is_quitting):
-            return False, -1
+        if is_quitting:
+            return False, -1, None
             
 # This method takes in a container of items, which have
 # sub-values of id, name, price, & weight, as well as an
@@ -42,6 +43,8 @@ def select_item(container, user_info, mode):
 def find_item_in_list(container, item_id_input):
     normalized_data = normalize_data(container)
     for item in normalized_data:
+        if item[0] == None:
+            return False, None
         if(item_id_input == item[0]['id']):
             return True, item
     return False, None
@@ -157,10 +160,10 @@ def validate_remove(user_info, inputted_quantity, item):
 
                 if int(user_info.kart[index][1]) == inputted_quantity:
                     user_info.kart.remove(player_item)
+                    print(f"Removed {inputted_quantity}x {item[0]['name']} from kart")
                     return True
 
-                user_info.kart[index]= (player_item[0], \
-                    (player_item[1] - inputted_quantity))
+                user_info.remove_item_from_kart(item, inputted_quantity)
                 return True
             
             else:
@@ -170,6 +173,6 @@ def validate_remove(user_info, inputted_quantity, item):
                 f" {player_item[1]})")
                 return False
 
-    print(f"\nSorry, could not find {item['name']} in " +
+    print(f"\nSorry, could not find {item[0]['name']} in " +
     f"your {user_info.get_kart_name}")
     return False

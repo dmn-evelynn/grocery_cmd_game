@@ -35,7 +35,9 @@ def remove_item(self, item, quantity):
     for item_entry in self.kart:
         # print(item_entry)
         # print(item_entry[count]['name'])
-        if(item['name'] == item_entry[count]['name']):
+        if(item[0]['name'] == item_entry[0][0]['name']):
+
+            difference = 0
 
             if(CalculateEligibility.determine_quantity_subtraction_eligibility(self.kart[count][1], quantity)):
                 difference = self.kart[count][1] - quantity
@@ -44,10 +46,12 @@ def remove_item(self, item, quantity):
                     del self.kart[count]
 
             matched_items = True
+            # print(self.kart[count][1])
+            self.kart[count] = (item, difference)
             break
         count = count + 1
 
     if not matched_items:
         print(f"\nSorry {self.name}, we could not find {item['name']} in your {self.get_kart_name}")
     else:
-        print(f"Removed {quantity}x {item['name']} from kart")
+        print(f"Removed {quantity}x {item[0]['name']} from kart")

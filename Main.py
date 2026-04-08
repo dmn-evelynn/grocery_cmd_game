@@ -68,10 +68,15 @@ class Customer:
         self.remaining_weight = remaining_weight
 
     # Adds items to the player's kart
-    def add_item_to_kart(self, container, mode):
-        # AddRemoveItems.add_item(self, item, quantity)
-        ItemSelectionMenu.select_item(container, user_info, mode)
+    def add_item_to_kart(self, item, quantity):
+        AddRemoveItems.add_item(self, item, quantity)
+        # ItemSelectionMenu.select_item(container, user_info, mode)
         
+    # Removes selected item & quantity from player's kart
+    def remove_item_from_kart(self, item, quantity):
+        AddRemoveItems.remove_item(self, item, quantity)
+        # ItemSelectionMenu.select_item(self.kart, item, "remove")
+        # print(f"Removed {quantity}x {item[0]['name']} from {self.get_kart_name}.")
 
     # Displays the player's current kart
     def display_kart(self, id_value: str = None):
@@ -98,10 +103,6 @@ class Customer:
         elif self.kart_preference == "3":
             return "large kart"
     
-    # Removes selected item & quantity from player's kart
-    def remove_item_from_kart(self, item, quantity):
-        ItemSelectionMenu.select_item(self.kart, item, "remove")
-        print(f"Removed {quantity}x {item[0]['name']} from {self.get_kart_name}.")
         
 
 user_info = Customer()

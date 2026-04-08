@@ -50,9 +50,7 @@ def enter_aisles(user_info):
                     selected_aisle = DisplayAisle.\
                         item_view_menu(aisles, user_input, \
                             user_info)
-                    is_item_selected = user_info.\
-                        add_item_to_kart(selected_aisle['items'], \
-                        "add")
+                    is_item_selected = ItemSelectionMenu.select_item(selected_aisle['items'], user_info, "add")
 
                     if is_item_selected:                 
                         break_out_while = True
