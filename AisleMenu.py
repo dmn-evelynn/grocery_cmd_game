@@ -16,7 +16,7 @@ def enter_aisles(user_info):
 
         [1] Meat
         [2] Dairy
-        [3] Fauna
+        [3] Produce
         [4] Baking Needs
         [5] Cleaning Supplies
         [6] Display kart
@@ -33,7 +33,7 @@ def enter_aisles(user_info):
 
         [1] Meat
         [2] Dairy
-        [3] Fauna
+        [3] Produce
         [4] Baking Needs
         [5] Cleaning Supplies
         [6] Display kart

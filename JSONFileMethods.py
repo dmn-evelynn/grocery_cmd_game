@@ -30,7 +30,7 @@ def create_aisle_file():
                 },
             {
                 "aisle_number": "3",
-                "aisle_name": "Fauna",
+                "aisle_name": "Produce",
                 "items":[
                     {"id": "301", "name": "apple", "price": 2.20, "weight": 1.15},
                     {"id": "302", "name": "banana", "price": 0.95, "weight": 1.10},
