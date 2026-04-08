@@ -22,15 +22,15 @@ def generate_wallet(user_info):
     while (True):
         try:
             user_input = input("Starting Funds (X.XX) >>> ")
-            if 0.01 > float(user_input) >= 1000000.00:
+            if 0.01 > float(user_input) >= 1000000000.00:
                 print(
-                    "\nAck!...That is not a valid input....Enter between 0 & 1,000,000.00")
+                    "\nAck!...That is not a valid input....Enter between 0 & 1,000,000,000.00")
             else:
                 user_info.set_wallet_funds(round(float(user_input), 2))
                 print(user_info.wallet)
                 break
         except ValueError:
-            print("\nAck!...That is not a valid input....Enter between 0 & 1,000,000.00")
+            print("\nAck!...That is not a valid input....Enter between 0 & 1,000,000,000.00")
 
 
 # This method prompts the user to enter their kart preference. Afterwards, the max
@@ -38,9 +38,9 @@ def generate_wallet(user_info):
 def generate_kart_preference(user_info):
     print("""\nPerfect...now which size kart is your preference? Chose one of the numbers below:
 
-              [1] Handbasket (Can hold  30lbs)
-              [2] Small-kart (Can hold  75lbs)
-              [3] Large-kart (Can hold 125lbs)
+              [1] Hand basket (Can hold  30lbs)
+              [2] Small-kart  (Can hold  75lbs)
+              [3] Large-kart  (Can hold 125lbs)
 
               """)
     while (True):
@@ -50,9 +50,9 @@ def generate_kart_preference(user_info):
         if not (user_input == "1" or user_input == "2" or user_input == "3"):
             print("""\nAck!...That is not a valid input....Enter 1, 2, or 3:
 
-              [1] Handbasket (Can hold  30lbs)
-              [2] Small-kart (Can hold  75lbs)
-              [3] Large-kart (Can hold 125lbs)
+              [1] Hand basket (Can hold  30lbs)
+              [2] Small-kart  (Can hold  75lbs)
+              [3] Large-kart  (Can hold 125lbs)
 
               """)
         else:

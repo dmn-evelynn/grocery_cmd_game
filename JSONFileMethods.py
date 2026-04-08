@@ -55,7 +55,7 @@ def create_aisle_file():
                     {"id": "501", "name": "paper towel", "price": 3.60, "weight": .85},
                     {"id": "502", "name": "bleach", "price": 4.00, "weight": 1.65},
                     {"id": "503", "name": "brush", "price": 2.50, "weight": 1.25},
-                    {"id": "504", "name": "air refreshener", "price": 3.15, "weight": 1.30}
+                    {"id": "504", "name": "air refresher", "price": 3.15, "weight": 1.30}
                     ]
                 }
             ]
@@ -65,7 +65,7 @@ def create_aisle_file():
         json.dump(aisles_data, json_file, indent=4)
 
 #
-# Read data in from fileeeee
+# Read data in from file
 #
 
 

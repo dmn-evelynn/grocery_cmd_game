@@ -1,6 +1,6 @@
 # This file's purpose is to be Main file
 
-import CreateUser, DisplayStats, MainMenu
+import CreateUser, DisplayStats, MainMenu, AddRemoveItems, ItemSelectionMenu
 
 # This program attempts to give the user a grocery shopping experience
 # via text prompts and text responses.
@@ -12,13 +12,13 @@ import CreateUser, DisplayStats, MainMenu
 # [4] Method that handles asking customer what aisle they want to go to
 # [5] Method that handles giving a description from user entry
 # [6] Method that handles choosing an item
-# [7] Method that handles viewnig customer's kart
+# [7] Method that handles viewing customer's kart
 # [8] Method that handles viewing customer's info/wallet
 # [9] Method that handles removing an item
 # [10] Method that handles [THREE DIFFERENT SHOPPING KARTS WITH DIFFERENT weight_limit
 # CAPACITIES]
 # [11] Method that handles checking out
-# [12] Method that handles employee having a light convo with you
+# [12] Method that handles employee having a light conversation with you
 # [13] Method that handles some of the user's stats
 
 
@@ -69,40 +69,30 @@ class Customer:
 
     # Adds items to the player's kart
     def add_item_to_kart(self, item, quantity):
-        print(f"Added {quantity}x {item['name']} to kart")
+        AddRemoveItems.add_item(self, item, quantity)
+        # ItemSelectionMenu.select_item(container, user_info, mode)
         
-        # Method that searches kart list for same item entry; then adds quantity
-        matched_items = False
-        count = 0
-        for item_entry in self.kart:
-            # print(item_entry)
-            if(item['name'] == item_entry[0]['name']):
-                # print(self.kart[count])
-                sum = self.kart[count][1] + quantity
-                # print(f"\n{self.kart[count][1]}\n\n{sum}")
-                self.kart[count] = (item, sum)
-                # print(item_entry, (self.kart[count][1] + quantity))
-                matched_items = True
-                break
-
-        if not matched_items:
-            self.kart.append((item, quantity))
-        
-
-
-
-
+    # Removes selected item & quantity from player's kart
+    def remove_item_from_kart(self, item, quantity):
+        AddRemoveItems.remove_item(self, item, quantity)
+        # ItemSelectionMenu.select_item(self.kart, item, "remove")
+        # print(f"Removed {quantity}x {item[0]['name']} from {self.get_kart_name}.")
 
     # Displays the player's current kart
-    def display_kart(self):
-        print(f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n==========================")
-        # print(self.kart)
-        for item, quantity in self.kart:
-            print(f"{quantity:04d}x | {item['name']}")
+    def display_kart(self, id_value: str = None):
+        header = f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n=========================="
+        if id_value == "id's":
+            print(header)
 
-    # Removes items from the player's kart
-    def remove_item_from_kart(self, item, quantity):
-        print(f"Removed {quantity}x {item} from kart")
+            for item, quantity in self.kart:
+                print(f"id: {item[0]['id']} | {quantity:04d}x | {item[0]['name']}")
+
+        else:
+            print(header)
+            # print(self.kart)
+            for item, quantity in self.kart:
+                print(f"{quantity:04d}x | {item[0]['name']}")
+
 
     # Returns the name for kart preference
     def get_kart_name(self):
@@ -112,7 +102,7 @@ class Customer:
             return "small kart"
         elif self.kart_preference == "3":
             return "large kart"
-
+    
         
 
 user_info = Customer()
