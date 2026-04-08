@@ -5,7 +5,7 @@ import CalculateEligibility
 # are error checked and if succeed then the appropriate amount of items is
 # sent back along with a True or False to signify a pass or fail. 
 def select_item(container, user_info, mode):
-    print("This is the item selection screen. Choose an item id then the " +
+    print("\nThis is the item selection screen. Choose an item id then the " +
     "quantity. To go back to the main menu, enter 'q'.")
     while(True):
 
@@ -40,10 +40,29 @@ def select_item(container, user_info, mode):
 # are checked if the inputted id and current item id
 # match. 
 def find_item_in_list(container, item_id_input):
-    for item in container:
-        if(item_id_input == item['id']):
+    normalized_data = normalize_data(container)
+    for item in normalized_data:
+        if(item_id_input == item[0]['id']):
             return True, item
     return False, None
+
+
+# This method takes in a container and normalizes the data; By
+# 'normalizes' we mean wrap non tuple items into tuples with
+# None as a placeholder for quantity.
+def normalize_data(old_container):
+    normalized_container = []
+    for instance in old_container:
+        if isinstance(instance, tuple) and len(instance) == 2 and isinstance(instance[1], (int, float)):
+            # Already a (item, quantity) pair — unwrap and re-wrap to normalize the item
+            item, quantity = instance
+            if isinstance(item, tuple):
+                # item is itself a wrapped tuple like ({...}, None) — unwrap it
+                item = item[0]
+            normalized_container.append((item, quantity))
+        else:
+            normalized_container.append((instance, None))
+    return normalized_container
 
 # This method takes in an item name to be used in printing for
 # a quality of life feature for the user, and a user info
@@ -56,13 +75,12 @@ def find_item_in_list(container, item_id_input):
 def get_quantity(item, user_info, mode):
     while(True):
         try:
-            inputted_quantity = input(f"Quantity of {item['name']} (limit: 9999) >>> ")
+            inputted_quantity = input(f"Quantity of {item[0]['name']} (limit: 9999) >>> ")
             
             if(inputted_quantity == "q"):
-                is_quitting = True
                 return True, -1
-            else:
-                inputted_quantity = int(inputted_quantity)
+
+            inputted_quantity = int(inputted_quantity)
 
             if mode == "add":
                 if validate_add(user_info, inputted_quantity, item):
@@ -77,44 +95,81 @@ def get_quantity(item, user_info, mode):
 
             
 
-        except Exception as e:
+        except ValueError as e:
             print("\nThat is not a number, please try again!")
             print(f"{e}; Please contact dev with a screenshot & how system was broken to " +
             "resolve this issue. <3")
-            return False, -1
 
 
-# This method takes in 
+# This method takes in the user_info object, inputted quantity, and 
+# an item object. The purpose is to validate that the player has
+# enough funds and remaining weight to add the number of requested
+# items.  
 def validate_add(user_info, inputted_quantity, item):
+    if inputted_quantity == 0:
+        return True
+
     if(0 <=(round(inputted_quantity))<= 9999):
 
         calculated_funds_passed = CalculateEligibility.calculate_valid_funds(user_info.wallet, \
-            inputted_quantity, item['price'])
+            inputted_quantity, item[0]['price'])
 
         if(calculated_funds_passed[0]):
             calculated_weight_passed = CalculateEligibility.calculate_valid_weight( \
-                user_info.remaining_weight, inputted_quantity, item['weight'])
+                user_info.remaining_weight, inputted_quantity, item[0]['weight'])
 
             if(calculated_weight_passed[0]):
                 # Update user's funds, weight, & kart
                 user_info.set_wallet_funds(user_info.wallet - calculated_funds_passed[1])
                 user_info.set_remaining_weight(user_info.remaining_weight - calculated_weight_passed[1])
                 user_info.add_item_to_kart(item, inputted_quantity)
+                
+                print(f"Added {inputted_quantity}x {item[0]['name']} to {user_info.get_kart_name()}")
 
                 return True
                 
             else:
                 print(f"\nYou do not have enough weight in your kart for " \
-                    f"{inputted_quantity}x {item['name']}")
-                return False, -1
+                    f"{inputted_quantity}x {item[0]['name']}")
+                return False
         else:
-            print(f"\nYou do not have the funds for {inputted_quantity}x {item['name']}...")
-            return False, -1
+            print(f"\nYou do not have the funds for {inputted_quantity}x {item[0]['name']}...")
+            return False
     
     else:
         print("\nThat input wasn't valid. Please enter an integer from 0-9999...")
-        return False, -1
+        return False
 
 
+# This method takes in the user_info object, inputted quantity, and an
+# item object. The purpose is to check that the player has the selected
+# item object in their kart. Then verify that the user has enough items
+# in their kart to remove the requested quantity. Once the check is
+# done, the item are removed from the player's kart then funds and 
+# remaining weight are refunded. A True or False is returned depending
+# if the method passed or failed to execute fully. 
 def validate_remove(user_info, inputted_quantity, item):
-    print('verifying removal.....')
+    for index, player_item in enumerate(user_info.kart):
+
+        if player_item[0][0]['id'] == item[0]['id']:
+
+            if int(user_info.kart[index][1]) >= inputted_quantity:
+
+                if int(user_info.kart[index][1]) == inputted_quantity:
+                    user_info.kart.remove(player_item)
+                    return True
+
+                user_info.kart[index]= (player_item[0], \
+                    (player_item[1] - inputted_quantity))
+                return True
+            
+            else:
+                print(f"\nCannot do that. {inputted_quantity} " +
+                f"is larger than the amount of {item['name']} " +
+                f"in your {user_info.get_kart_name}. (limit: " +
+                f" {player_item[1]})")
+                return False
+
+    print(f"\nSorry, could not find {item['name']} in " +
+    f"your {user_info.get_kart_name}")
+    return False

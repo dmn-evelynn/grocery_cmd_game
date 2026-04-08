@@ -49,4 +49,4 @@ def remove_item_from_kart(user_info):
         print(f"\nCannot do that... Please add some items to your {user_info.get_kart_name()} and then try again!")
     else:
         user_info.display_kart("id's")
-        is_item_selected = ItemSelectionMenu.select_item(user_info.kart, user_info, "add")
+        is_item_selected = ItemSelectionMenu.select_item(user_info.kart, user_info, "remove")

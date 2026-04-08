@@ -10,7 +10,7 @@ def add_item(self, item, quantity):
     for item_entry in self.kart:
         # print(item_entry)
         # print(item_entry[count]['name'])
-        if(item['name'] == item_entry[count]['name']):
+        if(item[0]['name'] == item_entry[0][0]['name']):
             # print(self.kart[count])
             sum = self.kart[count][1] + quantity
             # print(f"\n{self.kart[count][1]}\n\n{sum}")

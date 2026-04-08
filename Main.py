@@ -1,6 +1,6 @@
 # This file's purpose is to be Main file
 
-import CreateUser, DisplayStats, MainMenu, AddRemoveItems
+import CreateUser, DisplayStats, MainMenu, AddRemoveItems, ItemSelectionMenu
 
 # This program attempts to give the user a grocery shopping experience
 # via text prompts and text responses.
@@ -68,9 +68,9 @@ class Customer:
         self.remaining_weight = remaining_weight
 
     # Adds items to the player's kart
-    def add_item_to_kart(self, item, quantity):
-        AddRemoveItems.add_item(self, item, quantity)
-        print(f"Added {quantity}x {item['name']} to kart")
+    def add_item_to_kart(self, container, mode):
+        # AddRemoveItems.add_item(self, item, quantity)
+        ItemSelectionMenu.select_item(container, user_info, mode)
         
 
     # Displays the player's current kart
@@ -80,13 +80,13 @@ class Customer:
             print(header)
 
             for item, quantity in self.kart:
-                print(f"id: {item['id']} | {quantity:04d}x | {item['name']}")
+                print(f"id: {item[0]['id']} | {quantity:04d}x | {item[0]['name']}")
 
         else:
             print(header)
             # print(self.kart)
             for item, quantity in self.kart:
-                print(f"{quantity:04d}x | {item['name']}")
+                print(f"{quantity:04d}x | {item[0]['name']}")
 
 
     # Returns the name for kart preference
@@ -100,7 +100,8 @@ class Customer:
     
     # Removes selected item & quantity from player's kart
     def remove_item_from_kart(self, item, quantity):
-        AddRemoveItems.remove_item(self, item, quantity)
+        ItemSelectionMenu.select_item(self.kart, item, "remove")
+        print(f"Removed {quantity}x {item[0]['name']} from {self.get_kart_name}.")
         
 
 user_info = Customer()
