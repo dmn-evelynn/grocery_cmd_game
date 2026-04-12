@@ -2,79 +2,80 @@
 
 import JSONFileMethods, Checkout, DisplayAisle, ItemSelectionMenu
 
-# This method allows the user to chose an aisle, learn more about each aisle, or
-# return to the main menu.
+
+file_created = True
+
+aisles = JSONFileMethods.read_aisle_file()
+filtered_aisles = aisles['aisles']
+
+header = "\nWhich aisle will you go to? Choose from the following by inputting an integer:"
+error_msg = f"\nAck!...That is not a valid input....Enter 1 - {len(filtered_aisles) + 3}:"
+
+user_input = ""
+
+# This method takes in a user_info object; global variables are set for aisles,
+# filtered_aisles, header, error_msg, & user_input. Create_file() method is
+# called; While infinite while loop that prints out either a header or error
+# message along with selectable options; User is prompted for an integer; This
+# value is error checked and then is checked for dynamic and predetermined 
+# options. 
 def enter_aisles(user_info):
-    create_file = True
-    if (create_file):
-        JSONFileMethods.create_aisle_file()
-        create_file = False
+    global aisles, filtered_aisles, header, error_msg, user_input
+    print_header_or_error = True
+
+    create_file()
         
-    
-        
-    print("""\nWhich aisle will you go to? Choose from the following:
-
-        [1] Meat
-        [2] Dairy
-        [3] Produce
-        [4] Baking Needs
-        [5] Cleaning Supplies
-        [6] Display kart
-        [7] Checkout
-        [8] Back to Main Menu\n""")
-    user_input = input("Your selection >>> ")
-
-    while (True):
-        break_out_while = False
-        if not (user_input == "1" or user_input == "2" or user_input == "3" or \
-            user_input == "4" or user_input == "5" or user_input == "6" or \
-            user_input == "7" or user_input == "8"):
-            print("""\nAck!...That is not a valid input....Enter 1, 2, 3, 4, 5, 6, 7, or 8:
-
-        [1] Meat
-        [2] Dairy
-        [3] Produce
-        [4] Baking Needs
-        [5] Cleaning Supplies
-        [6] Display kart
-        [7] Checkout
-        [8] Back to Main Menu\n""")
-            user_input = input("Your selection >>> ")
-            
+    while True:
+        if print_header_or_error:
+            print(header)
         else:
-            
-            match user_input:
-                case "1" | "2" | "3" | "4" | "5":
-                    #run thru methods
-                    aisles = JSONFileMethods.read_aisle_file()
-                    selected_aisle = DisplayAisle.\
-                        item_view_menu(aisles, user_input, \
-                            user_info)
-                    is_item_selected = ItemSelectionMenu.select_item(selected_aisle['items'], user_info, "add")
+            print(error_msg)
+            print_header_or_error = True
 
-                    if is_item_selected:                 
-                        break_out_while = True
-                    #return to previous menu
-                    break
-                case "6":
-                    user_info.display_kart()
-                case "7":
-                    Checkout.checkout(user_info)
-                    break_out_while = True
-                    break
-                case "8":
-                    break_out_while = True
-                    break
-                
-            if(break_out_while):
-                break
-            
+        print_options(filtered_aisles)
+
+        try:
+            user_input = int(input("\nYour selection >>> ").strip())
+        except ValueError:
+            print_header_or_error = False
+            continue
+
+        if user_input == len(filtered_aisles) + 3:
+            break
         
-    # Aisle Layout ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # Aisle 1 -     Meat (ground beef, chicken, bacon, turkey)
-    # Aisle 2 -    Dairy (milk, eggs, cheese, butter)
-    # Aisle 3 -  Produce (lettuce, apples, oranges, bananas)
-    # Aisle 4 -   Baking (baking soda, salt, oil, bowls)
-    # Aisle 5 - Cleaning (paper towel, bleach, brush, air refresher)
-    # Checkout
-    # Quit
+        if user_input == len(filtered_aisles) + 2:
+            Checkout.checkout(user_info)
+            break
+
+        if user_input == len(filtered_aisles) + 1:
+            user_info.display_kart()
+            continue
+
+        if user_input in range(1, len(filtered_aisles)):
+            selected_aisle = DisplayAisle.item_view_menu(aisles, user_input, user_info)
+            is_item_selected = ItemSelectionMenu.select_item(selected_aisle['items'], user_info, "add")
+            continue
+        
+        print_header_or_error = False     
+        
+
+# This method doesn't take in anything; It checks if the global file_created 
+# boolean is True or False; Depending on the state, a JSON file is created
+# with some predetermined aisle information. 
+def create_file():
+    global file_created
+    if (file_created):
+        JSONFileMethods.create_aisle_file()
+        file_created = False
+
+
+# This method takes in an aisles list that contains information about an unknown 
+# amount of aisles; It takes this information and prints out a numbered list of
+# choices with the names of the aisles, a display kart option, a checkout option
+# and a back to Main Menu option. 
+def print_options(aisles):
+    for i, aisle in enumerate(aisles, start=1):
+        print(f"\t[{i}] {aisle['aisle_name']}")
+    print(f"\t[{len(aisles) + 1}] Display Kart")
+    print(f"\t[{len(aisles) + 2}] Checkout")
+    print(f"\t[{len(aisles) + 3}] Back to Main Menu")

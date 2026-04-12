@@ -17,7 +17,7 @@ def player_choose_from_menu(user_info):
         #print(random_dialog_choice)
         if (first_visit):
             print(f"\nAlright, {user_info.name}, let's get the ball rolling...." +
-                  "Choose from one of the following options:\n")
+                  "Choose from one of the following options by inputting an integer:\n")
             first_visit = False
         elif (random_dialog_choice < 2):
             print("\nPlease select from the following options:")
@@ -28,7 +28,9 @@ def player_choose_from_menu(user_info):
         user_input = input("Your selection >>> ")
 
         while(True):
-            if not (user_input == "1" or user_input == "2" or user_input == "3" or user_input == "4" or user_input == "5"):
+            if not (user_input == "1" or user_input == "2" or \
+                user_input == "3" or user_input == "4" or \
+                    user_input == "5" or user_input == "q"):
                 print("\nAck!...That is not a valid input....Enter 1, 2, 3, 4 or 5:")
                 print(menu)
                 user_input = input("Your selection >>> ")
@@ -46,6 +48,6 @@ def player_choose_from_menu(user_info):
         elif user_input == "4":
             Checkout.checkout(user_info)
             del user_input
-        elif user_input == "5":
+        elif user_input == "5" or user_input == "q":
             print("It is sad to see you go....")
             break

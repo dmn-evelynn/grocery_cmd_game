@@ -3,7 +3,11 @@
 def item_view_menu(aisles, user_input, user_info):
     selected_aisle = ""
     for aisle in aisles['aisles']:
-        if(user_input == aisle['aisle_number']):
+        try:
+            aisle_number = int(aisle['aisle_number'])
+        except ValueError:
+            print("...Error...Aisle number could not be set to an integer.")
+        if(user_input == aisle_number):
             #print(f"Match\t{user_input}\t{aisle['aisle_name']}")
             
             items = []
