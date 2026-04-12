@@ -98,7 +98,7 @@ def get_quantity(item, user_info, mode):
 
             
 
-        except ValueError as e:
+        except e:
             print("\nThat is not a number, please try again!")
             print(f"{e}; Please contact dev with a screenshot & how system was broken to " +
             "resolve this issue. <3")

@@ -58,7 +58,6 @@ def enter_aisles(user_info):
                     break
                 case "6":
                     user_info.display_kart()
-                    break
                 case "7":
                     Checkout.checkout(user_info)
                     break_out_while = True
