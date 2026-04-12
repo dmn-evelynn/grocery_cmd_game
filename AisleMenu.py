@@ -4,6 +4,7 @@ import JSONFileMethods, Checkout, DisplayAisle, ItemSelectionMenu
 
 
 file_created = True
+print_header = True
 
 aisles = JSONFileMethods.read_aisle_file()
 filtered_aisles = aisles['aisles']
@@ -15,29 +16,28 @@ user_input = ""
 
 # This method takes in a user_info object; global variables are set for aisles,
 # filtered_aisles, header, error_msg, & user_input. Create_file() method is
-# called; While infinite while loop that prints out either a header or error
+# called; Infinite while loop that prints out either a header or error
 # message along with selectable options; User is prompted for an integer; This
 # value is error checked and then is checked for dynamic and predetermined 
 # options. 
 def enter_aisles(user_info):
-    global aisles, filtered_aisles, header, error_msg, user_input
-    print_header_or_error = True
+    global aisles, filtered_aisles, header, error_msg, user_input, print_header
 
     create_file()
         
     while True:
-        if print_header_or_error:
+        if print_header:
             print(header)
         else:
             print(error_msg)
-            print_header_or_error = True
+            print_header = True
 
         print_options(filtered_aisles)
 
         try:
             user_input = int(input("\nYour selection >>> ").strip())
         except ValueError:
-            print_header_or_error = False
+            print_header = False
             continue
 
         if user_input == len(filtered_aisles) + 3:
@@ -56,7 +56,7 @@ def enter_aisles(user_info):
             is_item_selected = ItemSelectionMenu.select_item(selected_aisle['items'], user_info, "add")
             continue
         
-        print_header_or_error = False     
+        print_header = False     
         
 
 # This method doesn't take in anything; It checks if the global file_created 
