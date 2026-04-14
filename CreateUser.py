@@ -8,8 +8,8 @@ def create_user(user_info):
     # the generate_wallet & generate_kart_preference methods are called.
     print("....Welcome.....erm, you seem unfamiliar. Tell me a little about yourself!")
     user_info.set_name(input("Name >>> "))
-    print(f"\nHi, {user_info.name}! " +
-          "Welcome on in....tell me a little bit more about yourself!")
+    print(f"\nHi, {user_info.get_name()}! " +
+          "Welcome on in....tell me a little bit more, like how many funds you have!")
 
     generate_wallet(user_info)
 
@@ -26,7 +26,7 @@ def generate_wallet(user_info):
         try:
             float_user_input = round(float(user_input), 2)
 
-            if 0.01 > float_user_input or float_user_input >= 1000000000.00:
+            if 0 > float_user_input or float_user_input > 1000000000.00:
                 print(err_msg)
 
             else:

@@ -1,6 +1,8 @@
 # This file's purpose is to prompt the user for their item selection & quantity
 import CalculateEligibility
 
+header_line = "-=-=-=-=-=-=-=-=-"
+
 # This method prompts the user to enter an item id and then a quantity. Both 
 # are error checked and if succeed then the appropriate amount of items is
 # sent back along with a True or False to signify a pass or fail. 
@@ -98,7 +100,7 @@ def get_quantity(item, user_info, mode):
 
             
 
-        except e:
+        except Exception as e:
             print("\nThat is not a number, please try again!")
             print(f"{e}; Please contact dev with a screenshot & how system was broken to " +
             "resolve this issue. <3")
@@ -152,6 +154,7 @@ def validate_add(user_info, inputted_quantity, item):
 # remaining weight are refunded. A True or False is returned depending
 # if the method passed or failed to execute fully. 
 def validate_remove(user_info, inputted_quantity, item):
+    global header_line
     for index, player_item in enumerate(user_info.kart):
 
         if player_item[0][0]['id'] == item[0]['id']:
@@ -160,7 +163,9 @@ def validate_remove(user_info, inputted_quantity, item):
 
                 if int(user_info.kart[index][1]) == inputted_quantity:
                     user_info.kart.remove(player_item)
-                    print(f"Removed {inputted_quantity}x {item[0]['name']} from kart")
+                    print(f"Removed {inputted_quantity}x {item[0]['name']} from kart\n" + \
+                    f"{header_line}\nRemaining funds: {user_info.funds}\n" + \
+                    f"Remaining weight: {user_info.remaining_weight}")
                     return True
 
                 user_info.remove_item_from_kart(item, inputted_quantity)
@@ -168,9 +173,9 @@ def validate_remove(user_info, inputted_quantity, item):
             
             else:
                 print(f"\nCannot do that. {inputted_quantity} " +
-                f"is larger than the amount of {item['name']} " +
-                f"in your {user_info.get_kart_name}. (limit: " +
-                f" {player_item[1]})")
+                f"is larger than the amount of {item[0]['name']} " +
+                f"in your {user_info.get_kart_name()}. (limit: " +
+                f"{player_item[1]})")
                 return False
 
     print(f"\nSorry, could not find {item[0]['name']} in " +

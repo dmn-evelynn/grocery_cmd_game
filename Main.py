@@ -70,14 +70,22 @@ class Customer:
     # Adds items to the player's kart
     def add_item_to_kart(self, item, quantity):
         AddRemoveItems.add_item(self, item, quantity)
-        # ItemSelectionMenu.select_item(container, user_info, mode)
-        
+
+    # Adds new item to user's kart
+    def set_kart_new_item(self, item, quantity):
+        self.kart.append((item, quantity))
+    
+    # Replaces specified item in user's kart with updated quantity
+    def set_kart_index(self, index, item, quantity):
+        self.kart[index] = (item, quantity)
+                
     # Removes selected item & quantity from player's kart
     def remove_item_from_kart(self, item, quantity):
         AddRemoveItems.remove_item(self, item, quantity)
-        # ItemSelectionMenu.select_item(self.kart, item, "remove")
-        # print(f"Removed {quantity}x {item[0]['name']} from {self.get_kart_name}.")
-
+        
+    def remove_item_from_kar(self, index):
+        del self.kart[index]
+        
     # Displays the player's current kart
     def display_kart(self, id_value: str = None):
         header = f"\nDisplaying {self.name}'s {self.get_kart_name()}:\n===========\n\t==\n=========================="
@@ -93,6 +101,17 @@ class Customer:
             for item, quantity in self.kart:
                 print(f"{quantity:04d}x | {item[0]['name']}")
 
+    # Returns requested index of user's kart
+    def get_kart_index(self, index):
+        return self.kart[index]
+
+    # Returns entire user's kart
+    def get_kart(self):
+        return self.kart
+
+    # Returns requested index and subindex of user's kart
+    def get_kart_subindex(self, index, subindex):
+        return self.kart[index][subindex]
 
     # Returns the name for kart preference
     def get_kart_name(self):
@@ -102,7 +121,22 @@ class Customer:
             return "small kart"
         elif self.kart_preference == "3":
             return "large kart"
+
+    # Returns the value of name
+    def get_name(self):
+        return self.name
     
+    # Returns the value of wallet
+    def get_wallet(self):
+        return self.wallet
+    
+    # Returns the value of weight_limit
+    def get_weight_limit(self):
+        return self.weight_limit
+
+    # Returns the value of remaining_weight
+    def get_remaining_weight(self):
+        return self.remaining_weight
         
 
 user_info = Customer()
