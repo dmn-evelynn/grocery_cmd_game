@@ -8,8 +8,8 @@ def create_user(user_info):
     # the generate_wallet & generate_kart_preference methods are called.
     print("....Welcome.....erm, you seem unfamiliar. Tell me a little about yourself!")
     user_info.set_name(input("Name >>> "))
-    print(f"\nHi, {user_info.name}! " +
-          "Welcome on in....tell me a little bit more about yourself!")
+    print(f"\nHi, {user_info.get_name()}! " +
+          "Welcome on in....tell me a little bit more, like how many funds you have!")
 
     generate_wallet(user_info)
 
@@ -19,18 +19,23 @@ def create_user(user_info):
 # This method prompts the user to enter their starting wallet funds. Rounds input
 # to two decimal places.
 def generate_wallet(user_info):
+    err_msg = "\nAck!...That is not a valid input....Enter between 0 & 1,000,000,000.00\n"
     while (True):
+        user_input = input("Starting Funds (X.XX) >>> ")
+
         try:
-            user_input = input("Starting Funds (X.XX) >>> ")
-            if 0.01 > float(user_input) >= 1000000000.00:
-                print(
-                    "\nAck!...That is not a valid input....Enter between 0 & 1,000,000,000.00")
+            float_user_input = round(float(user_input), 2)
+
+            if 0 > float_user_input or float_user_input > 1000000000.00:
+                print(err_msg)
+
             else:
-                user_info.set_wallet_funds(round(float(user_input), 2))
-                print(user_info.wallet)
+                user_info.set_wallet_funds(float_user_input)
                 break
-        except ValueError:
-            print("\nAck!...That is not a valid input....Enter between 0 & 1,000,000,000.00")
+        
+        except ValueError as e:
+            print(f"{err_msg}")
+            continue
 
 
 # This method prompts the user to enter their kart preference. Afterwards, the max

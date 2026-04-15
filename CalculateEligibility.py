@@ -45,9 +45,9 @@ def determine_quantity_subtraction_eligibility(kart_quantity, inputted_quantity)
 # quantity. Both values are error checked with same logic as adding an item to
 # kart; if false then the user is informed to add items to kart first.
 def remove_item_from_kart(user_info):
-    if not user_info.kart:
+    if not user_info.get_kart():
         print(f"\nCannot do that... Please add some items to your " +
         f"{user_info.get_kart_name()} and then try again!")
     else:
         user_info.display_kart("id's")
-        is_item_selected = ItemSelectionMenu.select_item(user_info.kart, user_info, "remove")
+        is_item_selected = ItemSelectionMenu.select_item(user_info.get_kart(), user_info, "remove")
