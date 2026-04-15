@@ -6,6 +6,7 @@ import JSONFileMethods, Checkout, DisplayAisle, ItemSelectionMenu
 file_created = True
 print_header = True
 
+JSONFileMethods.create_file()
 aisles = JSONFileMethods.read_aisle_file()
 filtered_aisles = aisles['aisles']
 
@@ -22,8 +23,6 @@ user_input = ""
 # options. 
 def enter_aisles(user_info):
     global aisles, filtered_aisles, header, error_msg, user_input, print_header
-
-    create_file()
         
     while True:
         if print_header:
@@ -58,16 +57,6 @@ def enter_aisles(user_info):
         
         print_header = False     
         
-
-# This method doesn't take in anything; It checks if the global file_created 
-# boolean is True or False; Depending on the state, a JSON file is created
-# with some predetermined aisle information. 
-def create_file():
-    global file_created
-    if (file_created):
-        JSONFileMethods.create_aisle_file()
-        file_created = False
-
 
 # This method takes in an aisles list that contains information about an unknown 
 # amount of aisles; It takes this information and prints out a numbered list of

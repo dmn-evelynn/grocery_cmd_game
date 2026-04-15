@@ -1,6 +1,6 @@
 # This file's purpose is to be Main file
 
-import CreateUser, DisplayStats, MainMenu, AddRemoveItems, ItemSelectionMenu
+import CreateUser, JSONFileMethods, DisplayStats, MainMenu, AddRemoveItems, ItemSelectionMenu
 
 # This program attempts to give the user a grocery shopping experience
 # via text prompts and text responses.
@@ -83,7 +83,7 @@ class Customer:
     def remove_item_from_kart(self, item, quantity):
         AddRemoveItems.remove_item(self, item, quantity)
         
-    def remove_item_from_kar(self, index):
+    def remove_item_from_kart(self, index):
         del self.kart[index]
         
     # Displays the player's current kart
@@ -140,17 +140,7 @@ class Customer:
         
 
 user_info = Customer()
-# player_choose_from_menu(user_info)
 CreateUser.create_user(user_info) # <- Own file
 DisplayStats.display_stats(user_info) # <- Own file
 MainMenu.player_choose_from_menu(user_info) # <- Own file
-# enter_aisles(user_info)
-# checkout(user_info)
-
-# print(f"Kart pref: {user_info.kart_preference}")
-# print(f"Weight Limit: {user_info.weight_limit}")
-
-# print(
-#     f"kart type: {type(user_info.kart_preference)} & kart: {user_info.kart_preference}")
-# print(f"wallet: {user_info.wallet}")
 print(".....Thank you for playing! :D")

@@ -1,5 +1,7 @@
 # This file's purpose is to display the selected aisle's information
 
+import DisplayStats
+
 def item_view_menu(aisles, user_input, user_info):
     selected_aisle = ""
     for aisle in aisles['aisles']:
@@ -21,7 +23,10 @@ def item_view_menu(aisles, user_input, user_info):
             for item in aisle['items']:
                 spacing = ' ' * (highest_item_length - len(item['name']))
                 
-                line = f"| item id | {item['id']} ||  || item name | {item['name']}{spacing} ||  || item price | {item['price']:.2f} ||  || item weight | {item['weight']:.2f} |"
+                line = f"| item id | {item['id']} ||  || item name | " + \
+                    f"{item['name']}{spacing} ||  || item price | " + \
+                    f"{item['price']:.2f} ||  || item weight | " + \
+                    f"{item['weight']:.2f} |"
                 
                 items.append(line)
                 
@@ -33,7 +38,9 @@ def item_view_menu(aisles, user_input, user_info):
             print(f"+{divider}+")
             for item in items:
                 print(item)
-            print(f"+{divider}+\n")
+            print(f"+{divider}+")
+
+            DisplayStats.print_related_stats(user_info)
 
             selected_aisle = aisle
     return selected_aisle

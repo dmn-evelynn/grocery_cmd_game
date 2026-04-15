@@ -1,6 +1,16 @@
 # This file's purpose is to handle all of the file functions; creating and saving json file
 
 import json
+from pathlib import Path
+
+# This method doesn't take in anything; It checks if the global file_created 
+# boolean is True or False; Depending on the state, a JSON file is created
+# with some predetermined aisle information. 
+def create_file():
+    file_path = Path("aisles.json")
+    print(f"create_file() <- JSONFileMethods.py - {file_path}")
+    if not file_path.is_file():
+        create_aisle_file()
 
 #"id": "", "name": "", "price": 
 def create_aisle_file():
@@ -70,13 +80,15 @@ def create_aisle_file():
 
 
 def read_aisle_file():
-    #print("Reading File")
     try:
         with open('aisles.json', 'r') as file:
             return json.load(file)
+
     except FileNotFoundError:
-        print("Error: 'data.json' not found. Please ensure the file exists.")
+        print("Error: 'aisles.json' not found. Please ensure the file exists.")
+
     except json.JSONDecodeError:
         print("Error: Invalid JSON format in 'aisles.json'.")
+        
     except Exception as e:
         print(f"An unexpected error occurred: {e}")

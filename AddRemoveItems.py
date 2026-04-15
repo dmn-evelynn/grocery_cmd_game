@@ -38,11 +38,13 @@ def remove_item(user_options, item, quantity):
 
             difference = 0
 
-            if(CalculateEligibility.determine_quantity_subtraction_eligibility(user_options.get_kart_subindex(count, 1), quantity)):
+            if(CalculateEligibility. \
+                determine_quantity_subtraction_eligibility( \
+                    user_options.get_kart_subindex(count, 1), quantity)):
                 difference = user_options.get_kart_subindex(count, 1) - quantity
 
                 if(difference == 0):
-                    user_options.remove_item_from_kar(count)
+                    user_options.remove_item_from_kart(count)
 
             matched_items = True
             # print(self.kart[count][1])
@@ -51,6 +53,7 @@ def remove_item(user_options, item, quantity):
         count = count + 1
 
     if not matched_items:
-        print(f"\nSorry {user_options.get_name()}, we could not find {item['name']} in your {user_options.get_kart_name()}")
+        print(f"\nSorry {user_options.get_name()}, we could not find " + \
+              f"{item['name']} in your {user_options.get_kart_name()}")
     else:
         print(f"Removed {quantity}x {item[0]['name']} from kart")

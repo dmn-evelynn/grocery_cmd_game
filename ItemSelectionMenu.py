@@ -116,17 +116,17 @@ def validate_add(user_info, inputted_quantity, item):
 
     if(0 <=(round(inputted_quantity))<= 9999):
 
-        calculated_funds_passed = CalculateEligibility.calculate_valid_funds(user_info.wallet, \
+        calculated_funds_passed = CalculateEligibility.calculate_valid_funds(user_info.get_wallet(), \
             inputted_quantity, item[0]['price'])
 
         if(calculated_funds_passed[0]):
             calculated_weight_passed = CalculateEligibility.calculate_valid_weight( \
-                user_info.remaining_weight, inputted_quantity, item[0]['weight'])
+                user_info.get_remaining_weight(), inputted_quantity, item[0]['weight'])
 
             if(calculated_weight_passed[0]):
                 # Update user's funds, weight, & kart
-                user_info.set_wallet_funds(user_info.wallet - calculated_funds_passed[1])
-                user_info.set_remaining_weight(user_info.remaining_weight - calculated_weight_passed[1])
+                user_info.set_wallet_funds(user_info.get_wallet() - calculated_funds_passed[1])
+                user_info.set_remaining_weight(user_info.get_remaining_weight() - calculated_weight_passed[1])
                 user_info.add_item_to_kart(item, inputted_quantity)
                 
                 print(f"Added {inputted_quantity}x {item[0]['name']} to {user_info.get_kart_name()}")
@@ -155,17 +155,17 @@ def validate_add(user_info, inputted_quantity, item):
 # if the method passed or failed to execute fully. 
 def validate_remove(user_info, inputted_quantity, item):
     global header_line
-    for index, player_item in enumerate(user_info.kart):
+    for index, player_item in enumerate(user_info.get_kart):
 
         if player_item[0][0]['id'] == item[0]['id']:
 
-            if int(user_info.kart[index][1]) >= inputted_quantity:
+            if int(user_info.get_kart_subindex(index, 1)) >= inputted_quantity:
 
-                if int(user_info.kart[index][1]) == inputted_quantity:
-                    user_info.kart.remove(player_item)
+                if int(user_info.get_kart_subindex(index, 1)) == inputted_quantity:
+                    user_info.remove_item_from_kart(player_item, inputted_quantity)
                     print(f"Removed {inputted_quantity}x {item[0]['name']} from kart\n" + \
-                    f"{header_line}\nRemaining funds: {user_info.funds}\n" + \
-                    f"Remaining weight: {user_info.remaining_weight}")
+                    f"{header_line}\nRemaining funds: {user_info.get_wallet()}\n" + \
+                    f"Remaining weight: {user_info.get_remaining_weight()}")
                     return True
 
                 user_info.remove_item_from_kart(item, inputted_quantity)
@@ -179,5 +179,5 @@ def validate_remove(user_info, inputted_quantity, item):
                 return False
 
     print(f"\nSorry, could not find {item[0]['name']} in " +
-    f"your {user_info.get_kart_name}")
+    f"your {user_info.get_kart_name()}")
     return False

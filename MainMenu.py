@@ -69,7 +69,7 @@ def make_header(options, user_info):
 
     if first_visit:
         first_visit = False
-        return f"\nAlright, {user_info.name}, let's get the ball rolling...." \
+        return f"\nAlright, {user_info.get_name()}, let's get the ball rolling...." \
                 "Choose from one of the following options by inputting an integer:"
     elif (random_dialog_choice == 2):
         return "\nPlease select from the following options:"
